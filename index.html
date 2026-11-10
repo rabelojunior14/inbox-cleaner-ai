@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080d18">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Inbox Cleaner">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <title>Inbox Cleaner AI</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark">✉</div>
+      <div><div class="brand">INBOX CLEANER <span>AI</span></div><div class="eyebrow">GMAIL ASSISTANT</div></div>
+      <button class="icon-btn" id="settingsBtn" aria-label="Configurações">⚙</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">ORGANIZAÇÃO INTELIGENTE</p>
+        <h1>Sua caixa de entrada,<br><span>sob controle.</span></h1>
+        <p class="muted">Encontre o que não precisa mais. Você decide o que vai para a lixeira.</p>
+      </section>
+
+      <section class="connect-card panel">
+        <div class="card-head"><span class="eyebrow">SUA CONTA GOOGLE</span><span class="status" id="connectionStatus">NÃO CONECTADO</span></div>
+        <div class="account-row"><div class="gmail-icon">G</div><div><strong id="accountTitle">Gmail</strong><small id="accountSub">Conecte sua conta para começar</small></div></div>
+        <button class="primary-btn" id="connectBtn">Conectar conta Google</button>
+        <p class="tiny muted">A autorização é feita pelo Google. Nunca informe sua senha neste aplicativo.</p>
+      </section>
+
+      <section class="metrics">
+        <div class="metric panel"><span class="metric-icon">▤</span><strong id="scannedCount">0</strong><small>ANALISADOS</small></div>
+        <div class="metric panel"><span class="metric-icon">✧</span><strong id="reviewCount">0</strong><small>PARA REVISAR</small></div>
+      </section>
+
+      <section class="section-head"><div><p class="eyebrow">TRIAGEM</p><h2>Categorias</h2></div><button class="text-btn" id="scanBtn" disabled>Analisar e-mails ↗</button></section>
+      <div id="categories" class="category-list">
+        <div class="empty panel">Conecte o Gmail e toque em <b>Analisar e-mails</b> para classificar suas mensagens.</div>
+      </div>
+
+      <section class="review-panel panel">
+        <div class="section-head compact"><div><p class="eyebrow">DECISÃO FINAL</p><h2>Central de revisão</h2></div><span class="count-pill" id="selectedCount">0 selecionados</span></div>
+        <p class="muted small">Marque apenas o que deseja enviar à lixeira. Nada é apagado durante a análise.</p>
+        <div class="review-actions">
+          <button class="secondary-btn" id="selectSuggestedBtn" disabled>Selecionar sugestões</button>
+          <button class="danger-btn" id="trashBtn" disabled>Enviar à lixeira</button>
+        </div>
+        <div id="emailList"><div class="empty">Nenhuma mensagem carregada.</div></div>
+      </section>
+
+      <section class="safety panel"><div class="shield">✓</div><div><b>Você mantém o controle</b><p class="muted small">Toda mensagem exige sua aprovação. A ação usa a lixeira do Gmail, não a exclusão permanente.</p></div></section>
+    </main>
+
+    <nav class="bottom-nav"><a class="active">⌂<small>Início</small></a><a href="#emailList">▤<small>Revisão</small></a><a href="#categories">▥<small>Categorias</small></a><a id="navSettings" href="#settings">⚙<small>Ajustes</small></a></nav>
+  </div>
+
+  <dialog id="settingsDialog">
+    <div class="dialog-head"><h2>Configuração</h2><button class="icon-btn" id="closeSettings">✕</button></div>
+    <label for="clientId">Google OAuth Client ID (iOS/Web)</label>
+    <input id="clientId" placeholder="000000000000-xxxxx.apps.googleusercontent.com" autocomplete="off">
+    <p class="muted small">O Client ID é público. Configure um cliente OAuth para aplicativo web no Google Cloud, com a origem HTTPS deste site autorizada. Não cole Client Secret aqui.</p>
+    <label class="checkline"><input type="checkbox" id="includeSpam"> Incluir Spam e Lixeira na busca (não recomendado)</label>
+    <button class="primary-btn" id="saveSettings">Salvar configurações</button>
+    <p class="tiny muted">Este protótipo guarda apenas o Client ID localmente. Tokens OAuth ficam em memória durante a sessão.</p>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="app.js"></script>
+</body>
+</html>
