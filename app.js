@@ -9,6 +9,27 @@ let messages = [];
 let selectedIds = new Set();
 let includeSpam = false;
 
+const emailsDemonstracao = [
+  {
+    id: "demo-1",
+    remetente: "Ofertas da Loja",
+    assunto: "Promoção especial de tênis",
+    categoria: "Promoções"
+  },
+  {
+    id: "demo-2",
+    remetente: "Banco Exemplo",
+    assunto: "Comprovante de pagamento",
+    categoria: "Bancos e pagamentos"
+  },
+  {
+    id: "demo-3",
+    remetente: "Rede Social",
+    assunto: "Novidades da semana",
+    categoria: "Redes sociais"
+  }
+];
+
 const categories = [
   ["Promoções","megaphone","Promoções, newsletters e marketing"],
   ["Empresas","building-2","Comunicados e serviços"],
