@@ -174,8 +174,8 @@ function carregarDemonstracao() {
     subject: email.assunto,
     category: email.categoria,
     snippet: "E-mail fictício para demonstração",
-    suggested: false,
-    protectedMsg: true
+    suggested: email.categoria !== "Bancos e pagamentos",
+    protectedMsg: email.categoria === "Bancos e pagamentos"
   }));
   selectedIds.clear();
   render();
