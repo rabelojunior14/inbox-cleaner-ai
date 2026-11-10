@@ -166,3 +166,19 @@ $("#trashBtn").onclick=async()=>{
   finally{$("#trashBtn").disabled=!selectedIds.size}
 };
 if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+
+function carregarDemonstracao() {
+  messages = emailsDemonstracao.map(email => ({
+    id: email.id,
+    from: email.remetente,
+    subject: email.assunto,
+    category: email.categoria,
+    snippet: "E-mail fictício para demonstração",
+    suggested: false,
+    protectedMsg: true
+  }));
+  selectedIds.clear();
+  render();
+}
+
+carregarDemonstracao();
